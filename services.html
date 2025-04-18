@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - St-B Language Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #006400; /* Vert foncé */
+            --secondary-color: #f8f9fa; /* Fond clair */
+            --accent-color: #333; /* Texte foncé */
+            --highlight: #FFD700; /* Or pour accents */
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--secondary-color);
+            color: var(--accent-color);
+            line-height: 1.7;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: var(--primary-color);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--highlight);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--highlight);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .services-hero {
+            background: var(--primary-color);
+            color: white;
+            padding: 100px 5%;
+            text-align: center;
+            position: relative;
+        }
+        
+        .services-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1));
+        }
+        
+        .services-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s both;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .services-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s both 0.3s;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--highlight);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .service-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .service-card h3 i {
+            color: var(--highlight);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 50px 5%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+        }
+        
+        .footer-logo span {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--highlight);
+        }
+        
+        .copyright {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Animations */
+        [data-animate] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        [data-animate].animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+        .delay-3 { transition-delay: 0.6s; }
+
+        /* Styles des services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .facilities-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .facility-item {
+            background: rgba(0,100,0,0.05);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .facility-item i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        /* Carte Google Maps */
+        .map-container {
+            height: 300px;
+            width: 100%;
+            margin-top: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="LOGO-SBL.jpg" alt="SB Language Center" class="logo">
+            <span class="logo-text">St-B Language Center</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="services-hero">
+        <h1 class="animate__animated animate__fadeInDown">Nos Services Linguistiques</h1>
+        <p class="animate__animated animate__fadeInUp">200 Marion St, Winnipeg, MB R2H 0T5 - Des formations sur mesure pour tous les niveaux</p>
+    </section>
+
+    <section class="section">
+        <div class="section-title" data-animate>
+            <h2>Nos Formations Principales</h2>
+        </div>
+        
+        <div class="service-card" data-animate>
+            <h3><i class="fas fa-briefcase"></i> Business English & French Pro</h3>
+            <p>Destinés aux étudiants, immigrants et professionnels, adaptés aux niveaux et besoins professionnels.</p>
+            
+            <table>
+                <tr>
+                    <th>Élément</th>
+                    <th>Détail</th>
+                </tr>
+                <tr>
+                    <td>Objectif</td>
+                    <td>Améliorer l'aisance à l'oral et à l'écrit dans un contexte professionnel</td>
+                </tr>
+                <tr>
+                    <td>Contenu</td>
+                    <td>Réunions, négociations, présentations, e-mails, vocabulaire sectoriel</td>
+                </tr>
+                <tr>
+                    <td>Durée</td>
+                    <td>16 semaines (2 cours/sem.) ou format intensif 8 semaines</td>
+                </tr>
+                <tr>
+                    <td>Format</td>
+                    <td>En ligne ou en présentiel</td>
+                </tr>
+                <tr>
+                    <td>Public cible</td>
+                    <td>Professionnels, managers, entrepreneurs, étudiants nouvellement diplômés</td>
+                </tr>
+                <tr>
+                    <td>Certificat</td>
+                    <td>Oui – délivré après évaluation finale</td>
+                </tr>
+                <tr>
+                    <td>Prix</td>
+                    <td>400 $ / session (tarif groupe) ou 60 $ / heure en coaching individuel</td>
+                </tr>
+            </table>
+            
+            <a href="contact.html" class="cta-button">S'inscrire maintenant</a>
+        </div>
+        
+        <div class="service-card" data-animate class="delay-1">
+            <h3><i class="fas fa-child"></i> Français Pédagogique+ Jeunesse</h3>
+            <p>Cours de français à domicile pour les jeunes en immersion, incluant des sessions de tutorat personnalisées.</p>
+            
+            <table>
+                <tr>
+                    <th>Élément</th>
+                    <th>Détail</th>
+                </tr>
+                <tr>
+                    <td>Objectif</td>
+                    <td>Initier les enfants anglophones au français dans un cadre ludique et éducatif</td>
+                </tr>
+                <tr>
+                    <td>Contenu</td>
+                    <td>Jeux linguistiques, chansons, contes, activités de vocabulaire, expression orale</td>
+                </tr>
+                <tr>
+                    <td>Durée (été)</td>
+                    <td>12 semaines (5 séances/semaine)</td>
+                </tr>
+                <tr>
+                    <td>Durée (année)</td>
+                    <td>Format continu de 32 semaines (1 à 2 séances/semaine)</td>
+                </tr>
+                <tr>
+                    <td>Format</td>
+                    <td>En ligne interactif ou en présentiel (ateliers en petits groupes)</td>
+                </tr>
+                <tr>
+                    <td>Public cible</td>
+                    <td>Enfants anglophones de 6 à 12 ans</td>
+                </tr>
+                <tr>
+                    <td>Certificat</td>
+                    <td>Attestation de participation avec bilan personnalisé</td>
+                </tr>
+                <tr>
+                    <td>Prix</td>
+                    <td>25 $ / heure en accompagnement individuel</td>
+                </tr>
+            </table>
+            
+            <a href="contact.html" class="cta-button">Inscrire mon enfant</a>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <div class="section-title" data-animate>
+            <h2>Nos Formules de Cours</h2>
+        </div>
+        
+        <div class="service-card" data-animate>
+            <h3><i class="fas fa-graduation-cap"></i> Formules Adaptées à Vos Besoins</h3>
+            
+            <table>
+                <tr>
+                    <th>Formule</th>
+                    <th>Description</th>
+                    <th>Durée</th>
+                    <th>Tarifs</th>
+                </tr>
+                <tr>
+                    <td>Formule Classique</td>
+                    <td>Cours collectifs adaptés aux horaires d'entreprise</td>
+                    <td>12-16 sem.</td>
+                    <td>640 $</td>
+                </tr>
+                <tr>
+                    <td>Formule Intensive</td>
+                    <td>Immersion linguistique (20h/semaine)</td>
+                    <td>2-4 sem.</td>
+                    <td>30$/h</td>
+                </tr>
+                <tr>
+                    <td>Formule Coaching</td>
+                    <td>Coaching individuel ou par binôme</td>
+                    <td>10-12 sem.</td>
+                    <td>À partir de 40 $/h</td>
+                </tr>
+                <tr>
+                    <td>Préparation tests</td>
+                    <td>Préparation aux tests TOEIC, IELTS, TEF, etc. (10h/semaine)</td>
+                    <td>1 sem.</td>
+                    <td>100$</td>
+                </tr>
+            </table>
+            
+            <div style="margin-top: 30px;">
+                <h4><i class="fas fa-check-circle"></i> Aide et préparation aux examens</h4>
+                <p>Nous préparons également aux tests de langue reconnus (TCF, TOEFL, IELTS, TEF) avec un accompagnement ciblé pour maximiser vos performances.</p>
+            </div>
+            
+            <a href="contact.html" class="cta-button">Demander un devis</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title" data-animate>
+            <h2>Notre Centre</h2>
+            <p>200 Marion St, Winnipeg, MB R2H 0T5 - Au cœur de Saint-Boniface</p>
+        </div>
+        
+        <div class="service-card" data-animate>
+            <h3><i class="fas fa-map-marker-alt"></i> Emplacement et Installations</h3>
+            <p>Le centre est situé au <strong>200 Marion St, Winnipeg, MB R2H 0T5</strong>, à proximité de l'Université de Saint-Boniface, bénéficiant ainsi d'une visibilité stratégique et d'un accès privilégié.</p>
+            
+            <!-- Carte Google Maps intégrée -->
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2572.356059064351!2d-97.12682392413662!3d49.88813337139368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52ea73f8b3f970a1%3A0x7c1a33084b1fc642!2s200%20Marion%20St%2C%20Winnipeg%2C%20MB%20R2H%200T5%2C%20Canada!5e0!3m2!1sen!2sus!4v1715671234567!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            
+            <div class="facilities-list">
+                <div class="facility-item">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Salles de classe modernes, équipées pour un apprentissage optimal</span>
+                </div>
+                <div class="facility-item">
+                    <i class="fas fa-users"></i>
+                    <span>Espaces de coworking et de tutorat pour la collaboration</span>
+                </div>
+                <div class="facility-item">
+                    <i class="fas fa-coffee"></i>
+                    <span>Zone de détente et café linguistique pour les échanges</span>
+                </div>
+                <div class="facility-item">
+                    <i class="fas fa-wifi"></i>
+                    <span>Connexion haut débit dans tout le centre</span>
+                </div>
+                <div class="facility-item">
+                    <i class="fas fa-parking"></i>
+                    <span>Parking gratuit pour nos étudiants</span>
+                </div>
+                <div class="facility-item">
+                    <i class="fas fa-bus"></i>
+                    <span>Accès facile par transport en commun</span>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; background: rgba(0,100,0,0.05); padding: 20px; border-radius: 8px;">
+                <h4><i class="fas fa-info-circle"></i> Description du centre</h4>
+                <p>Le Centre de langues Saint-Boniface dispense des formations en anglais et en français à Winnipeg. Situé au <strong>200 Marion St, Winnipeg, MB R2H 0T5</strong>, il propose des cours adaptés et accessibles, répondant aux besoins des résidents et des nouveaux arrivants.</p>
+                <p>Nous accompagnons les apprenants dans le développement de leurs compétences linguistiques en proposant des formations flexibles et adaptées, dispensées en présentiel ou en ligne, afin de promouvoir le bilinguisme et favoriser la réussite.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">
+                    <img src="LOGO-SBL.jpg" alt="SB Language Center">
+                    <span>St-B Language Center</span>
+                </div>
+                <p>Centre d'excellence pour l'apprentissage des langues à Winnipeg, Manitoba.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4>Liens rapides</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="index.html" style="color: white; text-decoration: none;">Accueil</a></li>
+                    <li><a href="about.html" style="color: white; text-decoration: none;">À propos</a></li>
+                    <li><a href="services.html" style="color: white; text-decoration: none;">Services</a></li>
+                    <li><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>Nous contacter</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 200 Marion St, Winnipeg, MB R2H 0T5</p>
+                <p><i class="fas fa-phone"></i> (204) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@sblanguage.ca</p>
+                <p><i class="fas fa-globe"></i> www.stbonifacelanguagecenter.ca</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 St-B Language Center. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animation au défilement
+        const animateElements = document.querySelectorAll('[data-animate]');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        animateElements.forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Active le lien de la page actuelle
+        if (window.location.pathname.endsWith("services.html")) {
+            document.querySelector('nav ul li a[href="services.html"]').classList.add('active');
+        }
+    </script>
+</body>
+</html>

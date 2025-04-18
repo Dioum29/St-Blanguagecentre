@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - St-B Language Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #006400;
+            --secondary-color: #f8f9fa;
+            --accent-color: #333;
+            --highlight: #FFD700;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--secondary-color);
+            color: var(--accent-color);
+            line-height: 1.7;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: var(--primary-color);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--highlight);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--highlight);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .about-hero {
+            background: var(--primary-color);
+            color: white;
+            padding: 100px 5%;
+            text-align: center;
+            position: relative;
+        }
+        
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1));
+        }
+        
+        .about-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s both;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .about-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s both 0.3s;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--highlight);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .about-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .about-card h3 i {
+            color: var(--highlight);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 50px 5%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+        }
+        
+        .footer-logo span {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--highlight);
+        }
+        
+        .copyright {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        [data-animate] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        [data-animate].animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+        .delay-3 { transition-delay: 0.6s; }
+
+        /* NOUVEAU STYLE POUR LES PHOTOS DES FONDATEURS */
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .founder-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .founder-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .founder-img-container {
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        
+        .founder-img {
+            width: 51%;
+            height: 182%;
+            object-fit: contain;
+            object-position: center;
+        }
+        
+        .founder-info {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .founder-info h4 {
+            color: var(--primary-color);
+            margin: 10px 0 5px;
+            font-size: 1.3rem;
+        }
+        
+        .founder-info p {
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="LOGO-SBL.jpg" alt="SB Language Center" class="logo">
+            <span class="logo-text">St-B Language Center</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html" class="active">À propos</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="about-hero">
+        <h1 class="animate__animated animate__fadeInDown">Notre Passion pour les Langues</h1>
+        <p class="animate__animated animate__fadeInUp">Situé au cœur de Saint-Boniface, nous aidons nos étudiants à réussir grâce à la puissance du bilinguisme</p>
+    </section>
+
+    <section class="section">
+        <div class="section-title" data-animate>
+            <h2>À propos de nous</h2>
+        </div>
+        
+        <div class="about-card" data-animate>
+            <h3><i class="fas fa-bullseye"></i> Notre Mission</h3>
+            <p>Nous croyons que maîtriser une nouvelle langue ouvre des portes.Saint Boniface Language Centre aide les apprenants à améliorer leurs compétences en anglais et en français en offrant des cours flexibles, adaptés à leurs besoins professionnels et scolaires, en présentiel ou en ligne pour favoriser le bilinguisme et la réussite de chacun. Notre centre vous accompagne pour :</p>
+            <ul>
+                <li><strong>Réussir</strong>  dans les études et carrières post-étude</li>
+                <li><strong>Vivre</strong> pleinement la vie winnipegoise</li>
+                <li><strong>Découvrir</strong> le multiculturalisme winnipegois</li>
+            </ul>
+            <a href="contact.html" class="cta-button">Nous rejoindre</a>
+        </div>
+        
+        <div class="about-card" data-animate class="delay-1">
+            <h3><i class="fas fa-star"></i> Notre Approche</h3>
+            <p> <p>À SB Language Center, notre approche est centrée sur l’apprenant.
+                Nous combinons des méthodes pédagogiques modernes avec des outils interactifs pour rendre l’apprentissage des langues simple, engageant et efficace.
+                Nos cours sont conçus pour s’adapter au rythme de chacun, avec une attention particulière à la pratique orale, la compréhension, et la confiance en soi.
+                Que ce soit en ligne ou en présentiel, en groupe ou individuellement, nous favorisons un cadre d’apprentissage motivant, personnalisé et axé sur des résultats concrets:</p>
+            </p>
+            <ul>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div><i class="fas fa-user-check" style="color: var(--highlight);"></i> <strong>Sur mesure</strong> : Adapté à vos objectifs</div>
+                <div><i class="fas fa-laptop-house" style="color: var(--highlight);"></i> <strong>Flexible</strong> : En classe ou en ligne</div>
+                <div><i class="fas fa-chalkboard-teacher" style="color: var(--highlight);"></i> <strong>Qualifié</strong> : Enseignants passionnés</div>
+                <div><i class="fas fa-hand-holding-usd" style="color: var(--highlight);"></i> <strong>Accessible</strong> : Tarifs abordables</div>
+            </div>
+        </div>
+        
+        <div class="about-card" data-animate class="delay-2">
+            <h3><i class="fas fa-map-marked-alt"></i> Notre Emplacement</h3>
+            <p>200 Marion St, Winnipeg, MB R2H 0T5</p>
+            <p>Au cœur du quartier francophone de Winnipeg, notre centre bénéficie d'un emplacement stratégique :</p>
+            <ul>
+                <li>À proximité de l'Université de Saint-Boniface</li>
+                <li>Accès facile pour les étudiants et professionnels</li>
+                <li>Environnement culturel stimulant</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <div class="section-title" data-animate>
+            <h2>Notre Équipe Fondatrice</h2>
+            <p>Sept professionnels passionnés par l'éducation linguistique</p>
+        </div>
+        
+        <div class="founders-grid">
+            <div class="founder-card" data-animate>
+                <div class="founder-img-container">
+                    <img src="images/mame-balla.jpg" alt="Mame Balla Seck" class="founder-img">
+                </div>
+                <div class="founder-info">
+                    <h4>Mame Balla Seck</h4>
+                    <p>Responsable Technologie</p>
+                </div>
+            </div>
+            
+            <div class="founder-card" data-animate class="delay-1">
+                <div class="founder-img-container">
+                    <img src="images/noe-mapendo.jpg" alt="Noé Mapendo" class="founder-img">
+                </div>
+                <div class="founder-info">
+                    <h4>Noé Mapendo</h4>
+                    <p>Responsable Formation</p>
+                </div>
+            </div>
+            
+            <div class="founder-card" data-animate class="delay-2">
+                <div class="founder-img-container">
+                    <img src="images/fatima-fall.jpg" alt="Fatima Fall" class="founder-img">
+                </div>
+                <div class="founder-info">
+                    <h4>Fatima Fall</h4>
+                    <p>Coordinatrice Interculturelle</p>
+                </div>
+            </div>
+            
+            <div class="founder-card" data-animate>
+                <div class="founder-img-container">
+                    <img src="images/mbacke-diallo.jpg" alt="Mbacké Diallo" class="founder-img">
+                </div>
+                <div class="founder-info">
+                    <h4>Mbacké Diallo</h4>
+                    <p>Directeur Pédagogique</p>
+                </div>
+            </div>
+            
+            <div class="founder-card" data-animate class="delay-1">
+                <div class="founder-img-container">
+                    <img src="images/aminata-bamba.jpg" alt="Aminata Bamba" class="founder-img">
+                </div>
+                <div class="founder-info">
+                    <h4>Aminata Bamba</h4>
+                    <p>Directrice Administrative</p>
+                </div>
+            </div>
+            
+            <div class="founder-card" data-animate class="delay-2">
+                <div class="founder-img-container">
+                    <img src="images/kadio-krogossy.jpg" alt="Kadio Krogossy" class="founder-img">
+                </div>
+                <div class="founder-info">
+                    <h4>Kadio Krogossy</h4>
+                    <p>Responsable Communication</p>
+                </div>
+            </div>
+            
+            <div class="founder-card" data-animate class="delay-3">
+                <div class="founder-img-container">
+                    <img src="images/moustapha-mbaye.jpg" alt="Moustapha Mbaye" class="founder-img">
+                </div>
+                <div class="founder-info">
+                    <h4>Moustapha Mbaye</h4>
+                    <p>Coordinateur Étudiants</p>
+                </div>
+            </div>
+            
+           
+    </section>
+    
+
+    <section class="section" style="background: #f8f9fa;">
+        <div class="section-title" data-animate>
+            <h2>Notre Vision</h2>
+            <p>La vision de Saint Boniface Language Centre est de devenir une référence incontournable en matière de formation linguistique à Winnipeg, en offrant des cours accessibles, flexibles et de qualité pour favoriser l’intégration et la réussite des apprenants.</p>
+        </div>
+        
+        <div class="about-card" data-animate>
+            <h3><i class="fas fa-rocket"></i> Notre Engagement</h3>
+            <p> Chez SB Language Center, nous croyons que chaque personne mérite les outils pour communiquer, s’exprimer et réussir dans la langue de son choix.
+                Nous nous engageons à offrir un environnement d’apprentissage bienveillant, dynamique et adapté à chaque niveau.
+                Notre priorité est de briser les barrières linguistiques, que ce soit pour les nouveaux arrivants, les étudiants ou les jeunes Manitobains.
+                Nous mettons à votre disposition des enseignants qualifiés, des ressources modernes et un accompagnement personnalisé, en ligne ou en présentiel.
+                Ensemble, faisons de la langue un pont, pas un obstacle.Nous combinons expertise, accessibilité et innovation pour rendre l'apprentissage des langues :</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; text-align: center; margin: 30px 0;">
+                <div><i class="fas fa-bolt" style="font-size: 2rem; color: var(--highlight);"></i><br>Efficace</div>
+                <div><i class="fas fa-smile" style="font-size: 2rem; color: var(--highlight);"></i><br>Agréable</div>
+                <div><i class="fas fa-award" style="font-size: 2rem; color: var(--highlight);"></i><br>Reconnu</div>
+            </div>
+            <p style="text-align: center; font-style: italic; margin-top: 20px;">
+                "Rejoignez-nous pour construire un avenir bilingue !"
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">
+                    <img src="LOGO-SBL.jpg" alt="SB Language Center">
+                    <span>St-B Language Center</span>
+                </div>
+                <p>Centre d'excellence pour l'apprentissage des langues à Winnipeg, Manitoba.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4>Liens rapides</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="index.html" style="color: white; text-decoration: none;">Accueil</a></li>
+                    <li><a href="about.html" style="color: white; text-decoration: none;">À propos</a></li>
+                    <li><a href="services.html" style="color: white; text-decoration: none;">Services</a></li>
+                    <li><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 St-B Language Center. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animation au défilement
+        const animateElements = document.querySelectorAll('[data-animate]');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        animateElements.forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Active le lien de la page actuelle
+        if (window.location.pathname.endsWith("about.html")) {
+            document.querySelector('nav ul li a[href="about.html"]').classList.add('active');
+        }
+    </script>
+</body>
+</html>
